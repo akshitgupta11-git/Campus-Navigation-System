@@ -1,12 +1,3 @@
-// ======================================================
-// CAMPUS NAVIGATION SYSTEM
-// Dijkstra's Shortest Path Algorithm
-// ======================================================
-
-
-// ======================================================
-// 1. CAMPUS GRAPH
-// ======================================================
 
 const graph = {
 
@@ -57,9 +48,6 @@ const graph = {
 };
 
 
-// ======================================================
-// 2. DIJKSTRA'S ALGORITHM
-// ======================================================
 
 function dijkstra(graph, start) {
 
@@ -144,10 +132,6 @@ function dijkstra(graph, start) {
 }
 
 
-// ======================================================
-// 3. CREATE SHORTEST PATH
-// ======================================================
-
 function getPath(previous, start, destination) {
 
     const path = [];
@@ -184,9 +168,6 @@ function getPath(previous, start, destination) {
 }
 
 
-// ======================================================
-// 4. CLEAR OLD MAP HIGHLIGHTS
-// ======================================================
 
 function clearMapHighlight() {
 
@@ -221,10 +202,6 @@ function clearMapHighlight() {
 
 }
 
-
-// ======================================================
-// 5. HIGHLIGHT SHORTEST ROUTE ON MAP
-// ======================================================
 
 function highlightRoute(path) {
 
@@ -274,9 +251,6 @@ function highlightRoute(path) {
 }
 
 
-// ======================================================
-// 6. DISPLAY RESULT
-// ======================================================
 
 function displayResult(path, distance) {
 
@@ -311,11 +285,6 @@ function displayResult(path, distance) {
     highlightRoute(path);
 
 }
-
-
-// ======================================================
-// 7. MAIN FUNCTION
-// ======================================================
 
 function findShortestPath() {
 
@@ -364,9 +333,7 @@ function findShortestPath() {
         destinationElement.value;
 
 
-    // ==================================================
-    // CHECK 1: EMPTY SELECTION
-    // ==================================================
+
 
     if (start === "" || destination === "") {
 
@@ -384,9 +351,7 @@ function findShortestPath() {
     }
 
 
-    // ==================================================
-    // CHECK 2: SAME LOCATION
-    // ==================================================
+   
 
     if (start === destination) {
 
@@ -405,18 +370,9 @@ function findShortestPath() {
 
     }
 
-
-    // ==================================================
-    // RUN DIJKSTRA
-    // ==================================================
-
     const result =
         dijkstra(graph, start);
 
-
-    // ==================================================
-    // GET SHORTEST PATH
-    // ==================================================
 
     const path =
         getPath(
@@ -424,11 +380,6 @@ function findShortestPath() {
             start,
             destination
         );
-
-
-    // ==================================================
-    // CHECK 3: NO ROUTE
-    // ==================================================
 
     if (path.length === 0) {
 
@@ -446,21 +397,12 @@ function findShortestPath() {
     }
 
 
-    // ==================================================
-    // DISPLAY RESULT
-    // ==================================================
-
     displayResult(
         path,
         result.distances[destination]
     );
 
 }
-
-
-// ======================================================
-// 8. BUTTON EVENT
-// ======================================================
 
 document.addEventListener(
     "DOMContentLoaded",
