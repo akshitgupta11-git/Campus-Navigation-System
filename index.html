@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Navigation System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         MAIN CONTAINER
+    ========================================== -->
+
+    <div class="container">
+
+
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header>
+
+            <h1>Campus Navigation System</h1>
+
+            <p>
+                Find the shortest route between two locations on our campus.
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             ROUTE SELECTION
+        ====================================== -->
+
+        <section class="card">
+
+            <h2>Find Your Route</h2>
+
+
+            <!-- START LOCATION -->
+
+            <label for="start">
+                Start Location
+            </label>
+
+            <select id="start">
+
+                <option value="">
+                    Select Start Location
+                </option>
+
+                <option value="Main Gate">
+                    Main Gate
+                </option>
+
+                <option value="Library">
+                    Library
+                </option>
+
+                <option value="Canteen">
+                    Canteen
+                </option>
+
+                <option value="Computer Lab">
+                    Computer Lab
+                </option>
+
+                <option value="Science Block">
+                    Science Block
+                </option>
+
+                <option value="Admin Block">
+                    Admin Block
+                </option>
+
+                <option value="Auditorium">
+                    Auditorium
+                </option>
+
+                <option value="Sports Ground">
+                    Sports Ground
+                </option>
+
+            </select>
+
+
+
+            <!-- DESTINATION -->
+
+            <label for="destination">
+                Destination
+            </label>
+
+            <select id="destination">
+
+                <option value="">
+                    Select Destination
+                </option>
+
+                <option value="Main Gate">
+                    Main Gate
+                </option>
+
+                <option value="Library">
+                    Library
+                </option>
+
+                <option value="Canteen">
+                    Canteen
+                </option>
+
+                <option value="Computer Lab">
+                    Computer Lab
+                </option>
+
+                <option value="Science Block">
+                    Science Block
+                </option>
+
+                <option value="Admin Block">
+                    Admin Block
+                </option>
+
+                <option value="Auditorium">
+                    Auditorium
+                </option>
+
+                <option value="Sports Ground">
+                    Sports Ground
+                </option>
+
+            </select>
+
+
+
+            <!-- BUTTON -->
+
+            <button id="findRoute">
+
+                Find Shortest Route
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CAMPUS MAP
+        ====================================== -->
+
+        <section class="card">
+
+            <h2>Campus Map</h2>
+
+            <p class="map-description">
+                Weighted graph representing campus locations
+            </p>
+
+
+            <div class="map-container">
+
+
+                <!-- =================================
+                     SVG GRAPH
+                ================================== -->
+
+                <svg
+                    class="map-lines"
+                    viewBox="0 0 1000 500"
+                    preserveAspectRatio="none"
+                >
+
+
+                    <!-- MAIN GATE - LIBRARY -->
+
+                    <line
+                        x1="100"
+                        y1="300"
+                        x2="300"
+                        y2="150"
+                        class="map-edge"
+                        data-from="Main Gate"
+                        data-to="Library"
+                    />
+
+                    <text
+                        x="180"
+                        y="220"
+                        class="distance-label"
+                    >
+                        200m
+                    </text>
+
+
+
+                    <!-- MAIN GATE - ADMIN BLOCK -->
+
+                    <line
+                        x1="100"
+                        y1="300"
+                        x2="750"
+                        y2="170"
+                        class="map-edge"
+                        data-from="Main Gate"
+                        data-to="Admin Block"
+                    />
+
+                    <text
+                        x="420"
+                        y="235"
+                        class="distance-label"
+                    >
+                        300m
+                    </text>
+
+
+
+                    <!-- LIBRARY - CANTEEN -->
+
+                    <line
+                        x1="300"
+                        y1="150"
+                        x2="530"
+                        y2="120"
+                        class="map-edge"
+                        data-from="Library"
+                        data-to="Canteen"
+                    />
+
+                    <text
+                        x="405"
+                        y="125"
+                        class="distance-label"
+                    >
+                        100m
+                    </text>
+
+
+
+                    <!-- LIBRARY - COMPUTER LAB -->
+
+                    <line
+                        x1="300"
+                        y1="150"
+                        x2="320"
+                        y2="370"
+                        class="map-edge"
+                        data-from="Library"
+                        data-to="Computer Lab"
+                    />
+
+                    <text
+                        x="305"
+                        y="270"
+                        class="distance-label"
+                    >
+                        150m
+                    </text>
+
+
+
+                    <!-- CANTEEN - SCIENCE BLOCK -->
+
+                    <line
+                        x1="530"
+                        y1="120"
+                        x2="620"
+                        y2="300"
+                        class="map-edge"
+                        data-from="Canteen"
+                        data-to="Science Block"
+                    />
+
+                    <text
+                        x="555"
+                        y="210"
+                        class="distance-label"
+                    >
+                        120m
+                    </text>
+
+
+
+                    <!-- COMPUTER LAB - SCIENCE BLOCK -->
+
+                    <line
+                        x1="320"
+                        y1="370"
+                        x2="620"
+                        y2="300"
+                        class="map-edge"
+                        data-from="Computer Lab"
+                        data-to="Science Block"
+                    />
+
+                    <text
+                        x="470"
+                        y="330"
+                        class="distance-label"
+                    >
+                        100m
+                    </text>
+
+
+
+                    <!-- SCIENCE BLOCK - ADMIN BLOCK -->
+
+                    <line
+                        x1="620"
+                        y1="300"
+                        x2="750"
+                        y2="170"
+                        class="map-edge"
+                        data-from="Science Block"
+                        data-to="Admin Block"
+                    />
+
+                    <text
+                        x="680"
+                        y="235"
+                        class="distance-label"
+                    >
+                        150m
+                    </text>
+
+
+
+                    <!-- COMPUTER LAB - AUDITORIUM -->
+
+                    <line
+                        x1="320"
+                        y1="370"
+                        x2="650"
+                        y2="390"
+                        class="map-edge"
+                        data-from="Computer Lab"
+                        data-to="Auditorium"
+                    />
+
+                    <text
+                        x="480"
+                        y="380"
+                        class="distance-label"
+                    >
+                        200m
+                    </text>
+
+
+
+                    <!-- ADMIN BLOCK - AUDITORIUM -->
+
+                    <line
+                        x1="750"
+                        y1="170"
+                        x2="650"
+                        y2="390"
+                        class="map-edge"
+                        data-from="Admin Block"
+                        data-to="Auditorium"
+                    />
+
+                    <text
+                        x="700"
+                        y="280"
+                        class="distance-label"
+                    >
+                        100m
+                    </text>
+
+
+
+                    <!-- AUDITORIUM - SPORTS GROUND -->
+
+                    <line
+                        x1="650"
+                        y1="390"
+                        x2="820"
+                        y2="450"
+                        class="map-edge"
+                        data-from="Auditorium"
+                        data-to="Sports Ground"
+                    />
+
+                    <text
+                        x="735"
+                        y="420"
+                        class="distance-label"
+                    >
+                        250m
+                    </text>
+
+
+                </svg>
+
+
+
+                <!-- =================================
+                     LOCATION NODES
+                ================================== -->
+
+
+                <div
+                    class="location-node"
+                    data-location="Main Gate"
+                    style="left: 10%; top: 60%;"
+                >
+                    Main Gate
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Library"
+                    style="left: 30%; top: 30%;"
+                >
+                    Library
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Canteen"
+                    style="left: 53%; top: 24%;"
+                >
+                    Canteen
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Computer Lab"
+                    style="left: 32%; top: 74%;"
+                >
+                    Computer Lab
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Science Block"
+                    style="left: 62%; top: 60%;"
+                >
+                    Science Block
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Admin Block"
+                    style="left: 75%; top: 34%;"
+                >
+                    Admin Block
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Auditorium"
+                    style="left: 65%; top: 78%;"
+                >
+                    Auditorium
+                </div>
+
+
+                <div
+                    class="location-node"
+                    data-location="Sports Ground"
+                    style="left: 82%; top: 90%;"
+                >
+                    Sports Ground
+                </div>
+
+
+            </div>
+
+
+            <!-- MAP LEGEND -->
+
+            <div class="legend">
+
+                <div class="legend-item">
+
+                    <span class="legend-box"></span>
+
+                    Campus Location
+
+                </div>
+
+
+                <div class="legend-item">
+
+                    <span class="legend-line"></span>
+
+                    Path
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SHORTEST ROUTE RESULT
+        ====================================== -->
+
+        <section class="card result-card">
+
+            <h2>Shortest Route</h2>
+
+
+            <!-- ROUTE -->
+
+            <div class="route-box">
+
+                <span class="result-title">
+                    Route
+                </span>
+
+                <p id="route">
+                    Select locations and find a route.
+                </p>
+
+            </div>
+
+
+
+            <!-- RESULT INFORMATION -->
+
+            <div class="result-grid">
+
+
+                <!-- DISTANCE -->
+
+                <div class="result-item">
+
+                    <span class="result-title">
+                        Distance
+                    </span>
+
+                    <p id="distance">
+                    </p>
+
+                </div>
+
+
+
+                <!-- ALGORITHM -->
+
+                <div class="result-item">
+
+                    <span class="result-title">
+                        Algorithm
+                    </span>
+
+                    <p id="algorithm">
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ALGORITHM INFORMATION
+        ====================================== -->
+
+        <section class="card">
+
+            <h2>About the Algorithm</h2>
+
+            <p class="info-text">
+
+                This project uses
+                <strong>Dijkstra's Algorithm</strong>
+                to find the shortest path between two
+                locations in a weighted campus graph.
+
+            </p>
+
+
+            <div class="complexity-box">
+
+                <div>
+
+                    <strong>Time Complexity</strong>
+
+                    <p>
+                        O(V²)
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <strong>Space Complexity</strong>
+
+                    <p>
+                        O(V)
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer>
+
+            <p>
+                Campus Navigation System
+            </p>
+
+            <p>
+                Data Structures & Algorithms Project
+            </p>
+
+        </footer>
+
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

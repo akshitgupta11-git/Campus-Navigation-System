@@ -1,0 +1,634 @@
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f7fb;
+
+    color: #222;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 30px 0 50px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+header h1 {
+
+    color: #1f438f;
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
+
+}
+
+
+header p {
+
+    color: #60708a;
+
+    font-size: 16px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 24px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.card h2 {
+
+    color: #1f438f;
+
+    font-size: 21px;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =====================================================
+   LABELS
+===================================================== */
+
+label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-top: 14px;
+
+    margin-bottom: 7px;
+
+    color: #222;
+
+}
+
+
+/* =====================================================
+   SELECT
+===================================================== */
+
+select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #c9cfd8;
+
+    border-radius: 6px;
+
+    background: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+select:focus {
+
+    outline: none;
+
+    border-color: #1f438f;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #244594;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+button:hover {
+
+    background: #173578;
+
+}
+
+
+button:active {
+
+    transform: scale(0.99);
+
+}
+
+
+/* =====================================================
+   MAP DESCRIPTION
+===================================================== */
+
+.map-description {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: -10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =====================================================
+   MAP CONTAINER
+===================================================== */
+
+.map-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    background: #f8fafc;
+
+    border: 1px solid #d4dbe5;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================================
+   SVG
+===================================================== */
+
+.map-lines {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+/* =====================================================
+   GRAPH EDGES
+===================================================== */
+
+.map-edge {
+
+    stroke: #9aa5b5;
+
+    stroke-width: 2.5;
+
+    fill: none;
+
+    transition: 0.25s;
+
+}
+
+
+/* =====================================================
+   HIGHLIGHTED ROUTE EDGE
+===================================================== */
+
+.map-edge.route-active {
+
+    stroke: #ff9800;
+
+    stroke-width: 7;
+
+    filter:
+        drop-shadow(
+            0 0 4px rgba(255, 152, 0, 0.7)
+        );
+
+}
+
+
+/* =====================================================
+   DISTANCE LABEL
+===================================================== */
+
+.distance-label {
+
+    fill: #4b5563;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-anchor: middle;
+
+}
+
+
+/* =====================================================
+   LOCATION NODE
+===================================================== */
+
+.location-node {
+
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+
+    background: white;
+
+    border: 2px solid #173f8f;
+
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.12);
+
+    z-index: 5;
+
+    transition: 0.25s;
+
+}
+
+
+/* =====================================================
+   HIGHLIGHTED LOCATION
+===================================================== */
+
+.location-node.route-active {
+
+    background: #fff3cd;
+
+    border-color: #ff9800;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 152, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+}
+
+
+/* =====================================================
+   LEGEND
+===================================================== */
+
+.legend {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-top: 12px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #ddd;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    color: #536174;
+
+}
+
+
+.legend-box {
+
+    width: 13px;
+
+    height: 13px;
+
+    border: 2px solid #173f8f;
+
+    border-radius: 3px;
+
+    background: white;
+
+}
+
+
+.legend-line {
+
+    width: 28px;
+
+    height: 3px;
+
+    background: #9aa5b5;
+
+}
+
+
+/* =====================================================
+   ROUTE RESULT
+===================================================== */
+
+.route-box {
+
+    background: #f4f6fa;
+
+    border-radius: 7px;
+
+    padding: 16px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.result-title {
+
+    display: block;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+
+}
+
+
+#route {
+
+    color: #173f8f;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+}
+
+
+/* =====================================================
+   RESULT GRID
+===================================================== */
+
+.result-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+.result-item {
+
+    border: 1px solid #d6dbe3;
+
+    border-radius: 7px;
+
+    padding: 15px;
+
+    background: white;
+
+}
+
+
+.result-item p {
+
+    font-weight: bold;
+
+    color: #222;
+
+}
+
+
+/* =====================================================
+   ALGORITHM INFORMATION
+===================================================== */
+
+.info-text {
+
+    color: #4b5563;
+
+    line-height: 1.7;
+
+}
+
+
+.complexity-box {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 18px;
+
+}
+
+
+.complexity-box div {
+
+    background: #f4f6fa;
+
+    border-radius: 7px;
+
+    padding: 15px;
+
+}
+
+
+.complexity-box strong {
+
+    color: #173f8f;
+
+}
+
+
+.complexity-box p {
+
+    margin-top: 5px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    text-align: center;
+
+    color: #718096;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    margin-top: 25px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .container {
+
+        width: 94%;
+
+    }
+
+
+    header h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .map-container {
+
+        height: 400px;
+
+    }
+
+
+    .location-node {
+
+        padding: 7px 9px;
+
+        font-size: 10px;
+
+    }
+
+
+    .result-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .complexity-box {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
